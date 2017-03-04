@@ -1,0 +1,26 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Ryhmä Huttusen huikea foorumi</title>
+        <meta charset="UTF-8"/>
+        
+    </head>
+    <body>
+        <p>Tervetuloa <span th:text="${kayttaja.nimi}">käyttäjän nimi</span></p>
+        <p th:text="${kayttaja.tunnus}">Kayttajatunnus</p><a href="/logout">Kirjaudu ulos</a>
+        <p>Tää on vielä toi etusivu, mutta ero on että nyt sisäänkirjautunut</p>
+        
+        <p>aluekentät (vedä hiiri päälle niin tapahtuu eeppisyyttä;))</p>
+        <ul>
+            <li th:each="alue : ${alueet}">
+                <a th:href="@{~/s/users/{kayttajaid}/alueet/{alueid}/(kayttajaid=${kayttaja.id}, alueid=${alue.id})}"><span th:text="${alue.otsikko}" th:title="${alue.kuvaus}">Alueen nimi</span></a>
+            </li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${keskustelu.otsikko}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+       
+    </head>
+    <body>
+        <p th:text="${kayttaja.tunnus}">Kayttajatunnus</p><a href="/logout">Kirjaudu ulos</a>
+        <div>Täällä on kanssa keskustelun viestit, tällä kertaa <b>kirjautuneelle</b></div>
+        <p>Alue: <span th:text="${alue.otsikko}">alueen nimi</span> -> <span th:text="${keskustelu.otsikko}">keskustelun nimi</span></p>
+        <ol>
+            <li th:each="viesti : ${keskustelunViestit}">
+                <span th:text="${viesti.teksti}">Viesti</span>
+            </li>
+        </ol>
+        <p>Täällä mahdollisuus lähettää viestejä.</p>
+        <form method="POST" th:action="@{~/lahetaviesti/{kayttajaid}/{alueid}/{keskusteluid}/(kayttajaid=${kayttaja.id}, alueid=${alue.id}, keskusteluid=${keskustelu.id})}">
+            Kirjoita viesti:<br/>
+            <input type="text" name="viesti"/><br/>
+            
+            <input type="submit" value="Lähetä!"/>            
+        </form>
+        <a th:href="@{~/s/users/{kayttajaid}/alueet/{alueid}/(kayttajaid=${kayttaja.id}, alueid=${alue.id})}">Takaisin keskusteluihin</a>
+    </body>
+</html>
